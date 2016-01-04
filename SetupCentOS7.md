@@ -1,6 +1,6 @@
 # notes
-
-*RHEL/CentOS 7 64-Bit*
+**Security**
+*(RHEL/CentOS 7 64-Bit)*
 
 ```
 # wget http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
@@ -20,14 +20,23 @@
 # systemctl enable fail2ban
 # journalctl -lfu fail2ban
 ```
-
-
-[1](http://www.tecmint.com/how-to-enable-epel-repository-for-rhel-centos-6-5/)
-[2](http://unix.stackexchange.com/questions/171567/installing-fail2ban-on-centos-7)
-
+- [Enable EPEL repository](http://www.tecmint.com/how-to-enable-epel-repository-for-rhel-centos-6-5/)
+- [Install fail2ban](http://unix.stackexchange.com/questions/171567/installing-fail2ban-on-centos-7)
 ```
-# sudo yum update
-# sudo tee /etc/yum.repos.d/docker.repo <<-'EOF'
+# yum search sudo
+# yum install sudo.x86_64
+# visudo
+Enable wheel group
+# adduser user_name
+# passwd user_name
+# gpasswd -a user_name wheel
+```
+- [Sudo on CentOS](http://blog.zwiegnet.com/linux-server/add-user-to-sudoers-group-centos/)
+
+**Docker on CentOS 7**
+```
+# yum update
+# tee /etc/yum.repos.d/docker.repo <<-'EOF'
 [dockerrepo]
 name=Docker Repository
 baseurl=https://yum.dockerproject.org/repo/main/centos/$releasever/
@@ -35,9 +44,9 @@ enabled=1
 gpgcheck=1
 gpgkey=https://yum.dockerproject.org/gpg
 EOF
-# sudo yum install docker-engine
-# sudo service docker start
-# sudo docker run hello-world
+# yum install docker-engine
+# service docker start
+# docker run hello-world
+# usermod -aG docker user_name
 ```
-
-[3 Install Docker on CentOS](https://docs.docker.com/engine/installation/centos/)
+- [Install Docker on CentOS](https://docs.docker.com/engine/installation/centos/)
