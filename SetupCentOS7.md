@@ -47,6 +47,8 @@ EOF
 # yum install docker-engine
 # service docker start
 # docker run hello-world
+# chkconfig docker on
+
 # usermod -aG docker user_name
 ```
 - [Install Docker on CentOS](https://docs.docker.com/engine/installation/centos/)
